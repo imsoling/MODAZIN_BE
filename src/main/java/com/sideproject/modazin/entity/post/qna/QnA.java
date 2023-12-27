@@ -1,6 +1,6 @@
 package com.sideproject.modazin.entity.post.qna;
 
-import com.sideproject.modazin.dto.post.qna.QnAPostReq;
+//import com.sideproject.modazin.dto.post.qna.QnAPostReq;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -60,18 +60,4 @@ public class QnA {
     @Column(nullable = false)
     private String status;
 
-    public void createQnA(QnAPostReq qnAPostReq) {
-        QnA.builder()
-                .title(qnAPostReq.getTitle())
-                .writeUserSeq(qnAPostReq.getWriteUserSeq())
-                .content(qnAPostReq.getContent())
-                .hashtag(qnAPostReq.getHashtag())
-                .viewCnt(0)
-                .likeCnt(0)
-                .reportCnt(0)
-                .createdAt(new Date()) // 현재 날짜/시간
-                .updatedAt(new Date()) // 현재 날짜/시간
-                .status("ACTIVE")
-                .build();
-    }
 }
