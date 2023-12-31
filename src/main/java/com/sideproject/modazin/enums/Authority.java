@@ -1,4 +1,4 @@
-package com.sideproject.modazin.enums.user;
+package com.sideproject.modazin.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

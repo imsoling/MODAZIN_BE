@@ -1,8 +1,8 @@
-package com.sideproject.modazin.service.user;
+package com.sideproject.modazin.service;
 
-import com.sideproject.modazin.dto.user.UserSignUpDto;
+import com.sideproject.modazin.dto.UserSignUpDto;
 import com.sideproject.modazin.entity.User;
-import com.sideproject.modazin.repository.user.UserRepository;
+import com.sideproject.modazin.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

@@ -1,6 +1,6 @@
-package com.sideproject.modazin.dto.user;
+package com.sideproject.modazin.dto;
 
-import com.sideproject.modazin.enums.user.Authority;
+import com.sideproject.modazin.enums.Authority;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.*;

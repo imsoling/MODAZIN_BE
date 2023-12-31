@@ -1,7 +1,7 @@
-package com.sideproject.modazin.controller.user;
+package com.sideproject.modazin.controller;
 
-import com.sideproject.modazin.dto.user.UserSignUpDto;
-import com.sideproject.modazin.service.user.UserService;
+import com.sideproject.modazin.dto.UserSignUpDto;
+import com.sideproject.modazin.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

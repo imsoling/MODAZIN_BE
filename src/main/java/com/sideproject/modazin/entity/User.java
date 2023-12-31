@@ -1,7 +1,7 @@
 package com.sideproject.modazin.entity;
 
-import com.sideproject.modazin.dto.user.UserSignUpDto;
-import com.sideproject.modazin.enums.user.Authority;
+import com.sideproject.modazin.dto.UserSignUpDto;
+import com.sideproject.modazin.enums.Authority;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;

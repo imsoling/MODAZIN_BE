@@ -1,4 +1,4 @@
-package com.sideproject.modazin.repository.user;
+package com.sideproject.modazin.repository;
 
 import com.sideproject.modazin.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
