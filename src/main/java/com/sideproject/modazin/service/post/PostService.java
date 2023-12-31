@@ -1,4 +1,4 @@
-package com.sideproject.modazin.service;
+package com.sideproject.modazin.service.post;
 
 import com.sideproject.modazin.dto.PostCreateDto;
 import com.sideproject.modazin.entity.Post;
@@ -52,7 +52,7 @@ public class PostService {
             return;
         }
 
-        // TODO image server 저장 로직 추가 예정
+        // hyunzin image server 저장 로직 추가 예정
 
         imageRepository.save(saved.getPostSeq(), req.getImage());
     }
@@ -68,7 +68,7 @@ public class PostService {
     // delete
     @Transactional
     public void deleteBy(String type, long postSeq) {
-        // TODO 조건 상세 설정하기
+        // hyunzin 조건 상세 설정
         postRepository.deleteById(postSeq);
     }
 

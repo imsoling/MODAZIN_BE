@@ -3,7 +3,7 @@ package com.sideproject.modazin.controller;
 import com.sideproject.modazin.dto.PostCreateDto;
 import com.sideproject.modazin.entity.Post;
 import com.sideproject.modazin.exception.InvalidRequestException;
-import com.sideproject.modazin.service.PostService;
+import com.sideproject.modazin.service.post.PostService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
