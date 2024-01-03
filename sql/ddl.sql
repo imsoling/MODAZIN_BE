@@ -2,13 +2,11 @@
 # drop table comment;
 # drop table followingblock;
 # drop table likes;
-# drop table scrap;
+# drop table scraps;
 # drop table scrap_folder;
-# drop table talk;
-# drop table qna;
-# drop table map;
-# drop tabla post;
-# drop table category;
+# drop table images;
+# drop table post;
+# drop table categorys;
 # drop table user_log;
 # drop table user;
 
@@ -56,12 +54,12 @@ create table if not exists user
 -- 회원 위치 기록
 create table if not exists user_log
 (
-    log_seq    int auto_increment,
+    log_seq    int auto_increment
+    primary key,
     user_seq   int                                not null,
     longitude  decimal(10, 6)                     not null,
     latitude   decimal(10, 6)                     not null,
     created_at datetime default CURRENT_TIMESTAMP not null,
-    primary key (log_seq, user_seq),
     constraint user_log_user_seq_fk
     foreign key (user_seq) references user (user_seq)
     );
@@ -94,9 +92,9 @@ create table if not exists post
     created_at     datetime default CURRENT_TIMESTAMP not null,
     updated_at     datetime default CURRENT_TIMESTAMP not null,
     status         char     default 'Y'               not null,
-    constraint map_category_seq_fk
+    constraint post_category_seq_fk
     foreign key (category_seq) references categorys (category_seq),
-    constraint map_user_seq_fk
+    constraint post_user_seq_fk
     foreign key (write_user_seq) references user (user_seq)
     );
 
