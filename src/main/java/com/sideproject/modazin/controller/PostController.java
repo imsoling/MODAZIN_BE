@@ -3,7 +3,7 @@ package com.sideproject.modazin.controller;
 import com.sideproject.modazin.dto.PostCreateDto;
 import com.sideproject.modazin.entity.Post;
 import com.sideproject.modazin.exception.InvalidRequestException;
-import com.sideproject.modazin.service.post.PostService;
+import com.sideproject.modazin.service.PostService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +26,10 @@ public class PostController {
     }
 
     // create
-    @PostMapping("/save")
-    public ResponseEntity<String> save(@PathVariable("contentType") String type, @RequestBody PostCreateDto req) {
+    @PostMapping("/create")
+    public ResponseEntity<String> create(@PathVariable("contentType") String type, @RequestBody PostCreateDto req) {
         try {
-            postService.saveBy(type, req);
+            postService.create(type, req);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (InvalidRequestException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

@@ -1,4 +1,4 @@
-package com.sideproject.modazin.service.post;
+package com.sideproject.modazin.service;
 
 import com.sideproject.modazin.dto.PostCreateDto;
 import com.sideproject.modazin.entity.Post;
@@ -23,7 +23,7 @@ public class PostService {
 
     // create
     @Transactional
-    public void saveBy(String type, PostCreateDto req) {
+    public void create(String type, PostCreateDto req) {
         if (!type.equals(req.getContentType())) {
             throw new InvalidRequestException("Post type is not equal.");
         }
