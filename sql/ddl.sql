@@ -160,7 +160,6 @@ create table if not exists comment
     primary key,
     content_type      char     default 'C'               not null,
     write_user_seq    int                                not null,
-    post_type         char                               not null,
     write_post_seq    int                                not null,
     write_comment_seq int                                null,
     content           varchar(500)                       not null,
@@ -195,5 +194,3 @@ create table if not exists reports
     constraint reports_comment_seq_fk
     foreign key (comment_seq) references comment (comment_seq)
     );
-
-
