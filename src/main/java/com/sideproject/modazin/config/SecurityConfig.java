@@ -25,7 +25,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/").permitAll()
                             .requestMatchers("/user/login").permitAll()
-                            .requestMatchers("/user/signup").permitAll()
+                            .requestMatchers("/user/sign-up").permitAll()
                             .anyRequest().authenticated();
                 })
                 .formLogin(form -> {

@@ -39,9 +39,9 @@ create table if not exists user
     email               varchar(255)                          not null,
     nick_name           varchar(50)                           not null,
     password            varchar(255)                          not null,
-    longitude           decimal(10, 6)                        not null,
-    latitude            decimal(10, 6)                        not null,
-    location_created_at datetime    default CURRENT_TIMESTAMP not null,
+    longitude           decimal(10, 6)                        null,
+    latitude            decimal(10, 6)                        null,
+    location_created_at datetime                              null,
     phone_number        varchar(20)                           null,
     profile             text                                  null,
     status              char        default 'Y'               not null,
@@ -76,7 +76,7 @@ create table if not exists categorys
 -- 게시글
 create table if not exists post
 (
-    post_seq        int auto_increment
+    post_seq       int auto_increment
     primary key,
     content_type   char                               not null,
     category_seq   int                                not null,
@@ -90,12 +90,23 @@ create table if not exists post
     like_cnt       int      default 0                 null,
     report_cnt     int      default 0                 null,
     created_at     datetime default CURRENT_TIMESTAMP not null,
-    updated_at     datetime default CURRENT_TIMESTAMP not null,
+    updated_at     datetime                           null,
     status         char     default 'Y'               not null,
     constraint post_category_seq_fk
     foreign key (category_seq) references categorys (category_seq),
     constraint post_user_seq_fk
     foreign key (write_user_seq) references user (user_seq)
+    );
+
+-- 이미지
+create table if not exists images
+(
+    image_seq int auto_increment
+    primary key,
+    post_seq  int  not null,
+    image_url text not null,
+    constraint images_post_seq_fk
+    foreign key (post_seq) references post (post_seq)
     );
 
 -- 스크랩 폴더
@@ -113,31 +124,31 @@ create table if not exists scrap_folder
 -- 스크랩
 create table if not exists scraps
 (
-    scrap_seq    int  auto_increment,
-    user_seq     int  not null,
-    post_seq     int  not null,
-    folder_seq   int  null,
+    scrap_seq  int auto_increment,
+    user_seq   int not null,
+    post_seq   int not null,
+    folder_seq int null,
     primary key (scrap_seq, user_seq),
-    constraint scraps_user_seq_fk
-    foreign key (user_seq) references user (user_seq),
+    constraint scraps_folder_seq_fk
+    foreign key (folder_seq) references scrap_folder (folder_seq),
     constraint scraps_post_seq_fk
     foreign key (post_seq) references post (post_seq),
-    constraint scraps_folder_seq_fk
-    foreign key (folder_seq) references scrap_folder (folder_seq)
+    constraint scraps_user_seq_fk
+    foreign key (user_seq) references user (user_seq)
     );
 
 -- 좋아요
 create table if not exists likes
 (
-    like_seq     int auto_increment,
-    user_seq     int  not null,
-    post_seq     int  not null,
-    status       char default 'Y' not null,
+    like_seq int auto_increment,
+    user_seq int              not null,
+    post_seq int              not null,
+    status   char default 'Y' not null,
     primary key (like_seq, user_seq),
-    constraint likes_user_seq_fk
-    foreign key (user_seq) references user (user_seq),
     constraint likes_post_seq_fk
-    foreign key (post_seq) references post (post_seq)
+    foreign key (post_seq) references post (post_seq),
+    constraint likes_user_seq_fk
+    foreign key (user_seq) references user (user_seq)
     );
 
 -- 팔로잉 & 블락
@@ -147,10 +158,10 @@ create table if not exists followingblock
     fb_type     char not null,
     fb_user_seq int  not null,
     primary key (user_seq, fb_user_seq),
-    constraint followingblock_user_seq_fk
-    foreign key (user_seq) references user (user_seq),
     constraint followingblock_fb_user_seq_fk
-    foreign key (fb_user_seq) references user (user_seq)
+    foreign key (fb_user_seq) references user (user_seq),
+    constraint followingblock_user_seq_fk
+    foreign key (user_seq) references user (user_seq)
     );
 
 -- 댓글
@@ -166,15 +177,16 @@ create table if not exists comment
     like_cnt          int      default 0                 null,
     report_cnt        int      default 0                 null,
     created_at        datetime default CURRENT_TIMESTAMP not null,
-    updated_at        datetime default CURRENT_TIMESTAMP not null,
+    updated_at        datetime                           null,
     status            char     default 'Y'               not null,
-    constraint comment_user_seq_fk
-    foreign key (write_user_seq) references user (user_seq),
+    constraint comment_comment_seq_fk
+    foreign key (write_comment_seq) references comment (comment_seq),
     constraint comment_post_seq_fk
     foreign key (write_post_seq) references post (post_seq),
-    constraint comment_comment_seq_fk
-    foreign key (write_comment_seq) references comment (comment_seq)
+    constraint comment_user_seq_fk
+    foreign key (write_user_seq) references user (user_seq)
     );
+
 
 -- 신고
 create table if not exists reports
@@ -187,10 +199,10 @@ create table if not exists reports
     comment_seq  int                                null,
     content      varchar(500)                       not null,
     created_at   datetime default CURRENT_TIMESTAMP not null,
-    constraint reports_user_seq_fk
-    foreign key (user_seq) references user (user_seq),
+    constraint reports_comment_seq_fk
+    foreign key (comment_seq) references comment (comment_seq),
     constraint reports_post_seq_fk
     foreign key (post_seq) references post (post_seq),
-    constraint reports_comment_seq_fk
-    foreign key (comment_seq) references comment (comment_seq)
+    constraint reports_user_seq_fk
+    foreign key (user_seq) references user (user_seq)
     );
