@@ -19,6 +19,9 @@ create database modazin default character set utf8;
 -- DB 사용
 use modazin;
 
+-- 기존 USER 삭제
+DROP USER 'modazin'@'%';
+
 -- USER 생성
 create user modazin@'%' identified by 'modazin0816';
 

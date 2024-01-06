@@ -26,6 +26,8 @@ public class SecurityConfig {
                     auth.requestMatchers("/").permitAll()
                             .requestMatchers("/user/login").permitAll()
                             .requestMatchers("/user/sign-up").permitAll()
+                            // 버그 해결 후 삭제 예정
+                            .requestMatchers("/**").permitAll()
                             .anyRequest().authenticated();
                 })
                 .formLogin(form -> {
