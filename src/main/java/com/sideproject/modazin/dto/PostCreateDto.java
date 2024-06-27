@@ -13,11 +13,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostCreateDto {
+    private Long writeUserSeq;private String content;
     private String contentType;
-    private Long categorySeq;
-    private String title;
-    private Long writeUserSeq;
-    private String content;
+    private Long categorySeq;private String title;
     private String image;
     private BigDecimal longitude; // only type: M
     private BigDecimal latitude; // only type: M

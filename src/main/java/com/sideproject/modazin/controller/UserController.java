@@ -13,7 +13,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/sign-up")
+    @PostMapping("/signup")
     public ResponseEntity<String> signUpUser(@RequestBody UserSignUpDto userSignUpDto) {
         try {
             userService.signUpUser(userSignUpDto);

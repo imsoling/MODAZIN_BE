@@ -3,7 +3,7 @@ package com.sideproject.modazin.service;
 import com.sideproject.modazin.dto.PostCreateDto;
 import com.sideproject.modazin.entity.Post;
 import com.sideproject.modazin.exception.InvalidRequestException;
-import com.sideproject.modazin.exception.PostNotFoundException;
+//import com.sideproject.modazin.exception.PostNotFoundException;
 import com.sideproject.modazin.repository.ImageRepository;
 import com.sideproject.modazin.repository.PostRepository;
 import jakarta.transaction.Transactional;
@@ -30,9 +30,9 @@ public class PostService {
 
         Post saved = savePost(type, req);
 
-        if (saved.getPostSeq() < 0) {
-            throw new PostNotFoundException("Failed to create a post");
-        }
+//        if (saved.getPostSeq() < 0) {
+//            throw new PostNotFoundException("Failed to create a post");
+//        }
 
         saveImage(req, saved);
     }
@@ -59,9 +59,9 @@ public class PostService {
 
     public List<Post> findAllBy(String type) {
         List<Post> posts = postRepository.findByType(type);
-        if (posts.isEmpty()) {
-            throw new PostNotFoundException("Type: " + type + " is not found");
-        }
+//        if (posts.isEmpty()) {
+//            throw new PostNotFoundException("Type: " + type + " is not found");
+//        }
         return posts;
     }
 

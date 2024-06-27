@@ -1,7 +1,7 @@
 package com.sideproject.modazin.entity;
 
 import com.sideproject.modazin.dto.CommentCreateDto;
-import com.sideproject.modazin.dto.CommentUpdateDto;
+//import com.sideproject.modazin.dto.CommentUpdateDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

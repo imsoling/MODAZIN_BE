@@ -7,28 +7,22 @@ import com.sideproject.modazin.repository.UserLogRepository;
 import com.sideproject.modazin.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService{
 
     private final UserRepository userRepository;
     private final UserLogRepository userLogRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public User signUpUser(UserSignUpDto userSignUpDto) {
         validateDuplicateUser(userSignUpDto);
 
-        // 비밀번호 암호화
-        String encodedPassword = bCryptPasswordEncoder.encode(userSignUpDto.getPassword());
-
-        User user = User.createUser(userSignUpDto, bCryptPasswordEncoder);
+        User user = User.createUser(userSignUpDto, passwordEncoder);
 
         return userRepository.save(user);
     }
@@ -42,13 +36,6 @@ public class UserService implements UserDetailsService {
             throw new IllegalStateException("이미 사용 중인 닉네임입니다.");
         }
     }
-
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("로그인에 실패하였습니다."));
-    }
-
 
     // user 위치정보 저장
     // TODO 마이페이지에서도 사용할 수 있도록 추가
